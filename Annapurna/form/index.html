@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annapurna India | Donate</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>Donation Form</header>
+        <form action="https://formsubmit.co/03504536ea8e59b0442dc6c9bcc9c8bc" method="POST" id="myForm">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Contact Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Full Name</label>
+                            <input name="Name" type="text" placeholder="Enter your name"  required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="mobileNumber">Mobile Number</label>
+                            <input type="number" name="Number" id="mobileNumber" maxlength="10" placeholder="Enter your mobile number" required>
+                        </div>
+                        
+
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="email" name="Email" placeholder="Enter your email"  required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details Address">
+                    <span class="title">Address Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Address Line 1</label>
+                            <input type="text" name="Address1" placeholder="Enter address"  required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Address Line 2</label>
+                            <input type="text" name="Address2" placeholder="Enter address">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Zip/Postal Code</label>
+                            <input type="number" name="Zip-code" placeholder="Enter zip/postal code"  required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>City</label>
+                            <input type="text" name="City" placeholder="Enter your City"  required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>District</label>
+                            <input type="text" name="District" placeholder="Enter your District" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>State</label>
+                            <input type="text" name="State" placeholder="Enter your State"  required>
+                        </div>
+                    </div>
+
+                    <div class="btns">
+                        <button class="btn map" id="myButton">
+                            <span class="btntxt">Attach Map Location</span>
+                            <i class="uil uil-navigator"></i>
+                        </button>
+                        <div id="confirmationMessageContainer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form second">
+                <div class="details food">
+                    <span class="title">Food Details</span>
+
+                    <div class="table-container">
+                        <table id="foodTable">
+                            <thead>
+                                <tr>
+                                    <th>Serial Number</th>
+                                    <th>Name</th>
+                                    <th>Quantity (Kg.)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Initial row in the table -->
+                                <tr>
+                                    <td>1</td>
+                                    <td><input type="text" name="Food" placeholder="Enter food name"></td>
+                                    <td><input type="number" name="Qty." placeholder="Enter quantity"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="table-btns">
+                        <div class="btn">
+                            <button type="button" onclick="addFoodRow()">
+                                <span class="btntxt">Add Food Row</span>
+                            </button>
+                        </div>
+
+                        <div class="btn">
+                            <button type="button" onclick="removeFoodRow()">
+                                <span class="btntxt">Remove Food Row</span>
+                            </button>
+                        </div>
+                    </div>    
+                    
+                    <div class="btn">
+                        <button class="submitbtn">
+                           <input type="submit">
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="./app.js"></script>
+    <script>
+var maxRows = 6;
+var rowCounter = 1; // Initialize row counter
+
+function addFoodRow() {
+    var foodTable = document.getElementById('foodTable').getElementsByTagName('tbody')[0];
+    if (foodTable.rows.length < maxRows) {
+        var newRow = foodTable.insertRow();
+        var serialNumberCell = newRow.insertCell(0);
+        var nameCell = newRow.insertCell(1);
+        var quantityCell = newRow.insertCell(2);
+        serialNumberCell.innerHTML = foodTable.rows.length;
+
+        // Create input elements with dynamic name attributes
+        var foodInput = document.createElement('input');
+        foodInput.type = 'text';
+        foodInput.name = 'name' + rowCounter; // Set dynamic name attribute
+        foodInput.placeholder = 'Enter food name';
+        nameCell.appendChild(foodInput);
+
+        var quantityInput = document.createElement('input');
+        quantityInput.type = 'number';
+        quantityInput.name = 'qty' + rowCounter; // Set dynamic name attribute
+        quantityInput.placeholder = 'Enter quantity';
+        quantityCell.appendChild(quantityInput);
+
+        rowCounter++; // Increment row counter for the next row
+    } else {
+        alert("Maximum number of rows reached (6).");
+    }
+}
+
+function removeFoodRow() {
+    var foodTable = document.getElementById('foodTable').getElementsByTagName('tbody')[0];
+    if (foodTable.rows.length > 1) {
+        foodTable.deleteRow(-1);
+        rowCounter--; // Decrement row counter when removing a row
+    } else {
+        alert("At least one row is required.");
+    }
+}
+
+
+function removeFoodRow() {
+    var foodTable = document.getElementById('foodTable').getElementsByTagName('tbody')[0];
+    if (foodTable.rows.length > 1) {
+        foodTable.deleteRow(-1);
+    } else {
+        alert("At least one row is required.");
+    }
+}
+
+
+        function removeFoodRow() {
+            var foodTable = document.getElementById('foodTable').getElementsByTagName('tbody')[0];
+            if (foodTable.rows.length > 1) {
+                foodTable.deleteRow(-1);
+            } else {
+                alert("At least one row is required.");
+            }
+        }
+
+        // Function for location
+        function getLocation() {
+        return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+        });
+        }
+
+        const button = document.getElementById('myButton');
+        const form = document.getElementById('myForm');
+
+        button.addEventListener('click', async (event) => {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        try {
+        const location = await getLocation();
+        console.log(location);
+        
+        } catch (error) {
+        console.error(error);
+        }
+        });
+
+        //function for location confirmation message 
+
+        button.addEventListener('click', async (event) => {
+            event.preventDefault();
+
+            try {
+                const location = await getLocation();
+                console.log(location);
+
+                // Display a custom confirmation message
+                const confirmationMessageContainer = document.getElementById('confirmationMessageContainer');
+                
+                const confirmationMessage = document.createElement('div');
+                confirmationMessage.className = 'confirmation-message';
+                confirmationMessage.textContent = 'Location attached successfully!';
+
+                // Append the message to the container
+                confirmationMessageContainer.innerHTML = '';
+                confirmationMessageContainer.appendChild(confirmationMessage);
+
+                // Optional: Remove the message after a certain delay
+                setTimeout(() => {
+                    confirmationMessageContainer.innerHTML = '';
+                }, 3000); // 3000 milliseconds (adjust as needed)
+
+            } catch (error) {
+                console.error(error);
+            }
+        });
+
+        // Function for the restriction of digits in mobile no.
+        document.addEventListener('DOMContentLoaded', function () {
+        const mobileNumberInput = document.getElementById('mobileNumber');
+
+        mobileNumberInput.addEventListener('input', function () {
+            const maxLength = 10;
+            let inputValue = mobileNumberInput.value;
+
+            // Check if the entered value exceeds the maximum length
+            if (inputValue.length > maxLength) {
+                // Trim the input to the allowed maximum length
+                inputValue = inputValue.slice(0, maxLength);
+                mobileNumberInput.value = inputValue;
+            }
+        });
+    });
+
+
+    </script>
+</body>
+</html>
